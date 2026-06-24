@@ -1,6 +1,8 @@
 # iam-privesc-mapper
 
 [![CI](https://github.com/John-Axe/iam-privesc-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/John-Axe/iam-privesc-mapper/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/John-Axe/iam-privesc-mapper/actions/workflows/codeql.yml/badge.svg)](https://github.com/John-Axe/iam-privesc-mapper/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/John-Axe/iam-privesc-mapper/badge)](https://scorecard.dev/viewer/?uri=github.com/John-Axe/iam-privesc-mapper)
 
 ## Problem
 
@@ -115,6 +117,16 @@ attached policy.
 ```bash
 pytest -v
 ```
+
+## Security
+
+This repo practices what it preaches:
+
+- **CodeQL** ([`codeql.yml`](.github/workflows/codeql.yml)) — static analysis on every push, PR, and weekly, results in the Security tab.
+- **OpenSSF Scorecard** ([`scorecard.yml`](.github/workflows/scorecard.yml)) — supply-chain posture checked on push to `main` and weekly, SARIF uploaded to the Security tab, badge above.
+- **Dependabot** ([`dependabot.yml`](.github/dependabot.yml)) — weekly update PRs for both the `pip` dependencies and the `github-actions` workflow dependencies.
+- **gitleaks** ([`gitleaks.yml`](.github/workflows/gitleaks.yml)) — independent secret-scanning pass on every push/PR.
+- **Pinned, least-privilege workflows** — every third-party Action is pinned to a full commit SHA (not a floating tag), each workflow declares an explicit `permissions:` block defaulting to `contents: read`, and superseded runs are cancelled via `concurrency:`.
 
 ## License
 
