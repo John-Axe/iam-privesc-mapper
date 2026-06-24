@@ -16,10 +16,15 @@ def render_png(graph: nx.DiGraph, output_path: str) -> str:
     dot = graphviz.Digraph("iam_privesc", format="png")
     dot.attr(rankdir="LR", fontsize="10")
 
+    # ARNs contain colons, which graphviz's edge() doesn't quote the way
+    # node() does, producing invalid DOT syntax. Use synthetic node IDs
+    # instead and keep the ARN/name as the label.
+    node_ids = {node: f"n{i}" for i, node in enumerate(graph.nodes())}
+
     for node, data in graph.nodes(data=True):
         kind = data.get("kind", "user")
         dot.node(
-            node,
+            node_ids[node],
             label=data.get("label", node),
             shape="box" if kind == "role" else "ellipse",
             style="filled",
@@ -30,8 +35,8 @@ def render_png(graph: nx.DiGraph, output_path: str) -> str:
     for u, v, data in graph.edges(data=True):
         kind = data.get("kind", "")
         dot.edge(
-            u,
-            v,
+            node_ids[u],
+            node_ids[v],
             label=data.get("label", ""),
             color=EDGE_COLOR.get(kind, "#34495e"),
             style=EDGE_STYLE.get(kind, "solid"),
