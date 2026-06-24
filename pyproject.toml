@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iam-privesc-mapper"
+version = "0.1.0"
+description = "Map AWS IAM privilege-escalation paths from authorization details and render them as a graph."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "John-Axe" }]
+dependencies = [
+    "networkx>=3.0",
+    "graphviz>=0.20",
+]
+
+[project.optional-dependencies]
+live = ["boto3>=1.28"]
+dev = [
+    "pytest>=7.4",
+    "ruff>=0.4",
+    "boto3>=1.28",
+]
+
+[project.scripts]
+iam-privesc = "iam_privesc.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+iam_privesc = []
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
