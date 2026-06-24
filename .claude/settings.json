@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pytest *)",
+      "Bash(python3 -m pytest*)",
+      "Bash(ruff check*)",
+      "Bash(actionlint*)",
+      "Bash(terraform validate*)"
+    ]
+  }
+}
