@@ -1,0 +1,333 @@
+{
+  "UserDetailList": [
+    {
+      "UserName": "alice",
+      "Arn": "arn:aws:iam::123456789012:user/alice",
+      "AttachedManagedPolicies": [
+        {"PolicyName": "ReadOnlyAccess", "PolicyArn": "arn:aws:iam::aws:policy/ReadOnlyAccess"}
+      ],
+      "UserPolicyList": [
+        {
+          "PolicyName": "AllowPolicyVersionEdit",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": ["iam:CreatePolicyVersion", "iam:ListPolicyVersions"],
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "bob",
+      "Arn": "arn:aws:iam::123456789012:user/bob",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "LambdaDeployer",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": ["lambda:CreateFunction", "lambda:InvokeFunction"],
+                "Resource": "*"
+              },
+              {
+                "Effect": "Allow",
+                "Action": "iam:PassRole",
+                "Resource": "arn:aws:iam::123456789012:role/AppRole"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "carol",
+      "Arn": "arn:aws:iam::123456789012:user/carol",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "SelfServicePolicy",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "iam:PutUserPolicy",
+                "Resource": "arn:aws:iam::123456789012:user/carol"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "dave",
+      "Arn": "arn:aws:iam::123456789012:user/dave",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "S3ReadOnlyOneBucket",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": ["s3:GetObject", "s3:ListBucket"],
+                "Resource": [
+                  "arn:aws:s3:::reports-bucket",
+                  "arn:aws:s3:::reports-bucket/*"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "eve",
+      "Arn": "arn:aws:iam::123456789012:user/eve",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "AssumeAdminRole",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "sts:AssumeRole",
+                "Resource": "arn:aws:iam::123456789012:role/AdminRole"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "frank",
+      "Arn": "arn:aws:iam::123456789012:user/frank",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "UserAdminHelper",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": ["iam:CreateAccessKey", "iam:ListUsers"],
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "grace",
+      "Arn": "arn:aws:iam::123456789012:user/grace",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "IamFullControl",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "iam:*",
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "henry",
+      "Arn": "arn:aws:iam::123456789012:user/henry",
+      "AttachedManagedPolicies": [
+        {"PolicyName": "LegacyAdminVersions", "PolicyArn": "arn:aws:iam::123456789012:policy/LegacyAdminVersions"}
+      ],
+      "UserPolicyList": [
+        {
+          "PolicyName": "RollbackPolicyVersion",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "iam:SetDefaultPolicyVersion",
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "irene",
+      "Arn": "arn:aws:iam::123456789012:user/irene",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "Ec2Launcher",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": ["ec2:RunInstances", "ec2:DescribeInstances"],
+                "Resource": "*"
+              },
+              {
+                "Effect": "Allow",
+                "Action": "iam:PassRole",
+                "Resource": "arn:aws:iam::123456789012:role/AppRole"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    },
+    {
+      "UserName": "judy",
+      "Arn": "arn:aws:iam::123456789012:user/judy",
+      "AttachedManagedPolicies": [],
+      "UserPolicyList": [
+        {
+          "PolicyName": "AttachPolicyHelper",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "iam:AttachUserPolicy",
+                "Resource": "arn:aws:iam::123456789012:user/judy"
+              }
+            ]
+          }
+        }
+      ],
+      "GroupList": []
+    }
+  ],
+  "GroupDetailList": [],
+  "RoleDetailList": [
+    {
+      "RoleName": "AdminRole",
+      "Arn": "arn:aws:iam::123456789012:role/AdminRole",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {"AWS": "arn:aws:iam::123456789012:user/eve"},
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "AttachedManagedPolicies": [
+        {"PolicyName": "AdministratorAccess", "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"}
+      ],
+      "RolePolicyList": []
+    },
+    {
+      "RoleName": "AppRole",
+      "Arn": "arn:aws:iam::123456789012:role/AppRole",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {"Service": ["lambda.amazonaws.com", "ec2.amazonaws.com"]},
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "AttachedManagedPolicies": [
+        {"PolicyName": "AdministratorAccess", "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"}
+      ],
+      "RolePolicyList": []
+    }
+  ],
+  "Policies": [
+    {
+      "PolicyName": "AdministratorAccess",
+      "Arn": "arn:aws:iam::aws:policy/AdministratorAccess",
+      "DefaultVersionId": "v1",
+      "PolicyVersionList": [
+        {
+          "VersionId": "v1",
+          "IsDefaultVersion": true,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {"Effect": "Allow", "Action": "*", "Resource": "*"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "PolicyName": "ReadOnlyAccess",
+      "Arn": "arn:aws:iam::aws:policy/ReadOnlyAccess",
+      "DefaultVersionId": "v1",
+      "PolicyVersionList": [
+        {
+          "VersionId": "v1",
+          "IsDefaultVersion": true,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {"Effect": "Allow", "Action": ["s3:Get*", "s3:List*", "iam:Get*", "iam:List*"], "Resource": "*"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "PolicyName": "LegacyAdminVersions",
+      "Arn": "arn:aws:iam::123456789012:policy/LegacyAdminVersions",
+      "DefaultVersionId": "v2",
+      "PolicyVersionList": [
+        {
+          "VersionId": "v1",
+          "IsDefaultVersion": false,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {"Effect": "Allow", "Action": "*", "Resource": "*"}
+            ]
+          }
+        },
+        {
+          "VersionId": "v2",
+          "IsDefaultVersion": true,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {"Effect": "Allow", "Action": ["s3:GetObject"], "Resource": "*"}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
