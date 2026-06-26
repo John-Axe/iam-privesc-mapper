@@ -21,7 +21,6 @@ jobs:
       contents: read
       security-events: write # upload SARIF to the Security tab
       id-token: write # publish results to the OpenSSF API for the badge
-      administration: read # allow Branch-Protection check to read classic branch protection rules
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -32,6 +31,11 @@ jobs:
           results_file: results.sarif
           results_format: sarif
           publish_results: true
+          # Fine-grained PAT with administration:read is required to evaluate
+          # the Branch-Protection check. Without it the check returns -1.
+          # Create the token at Settings > Developer settings > Fine-grained tokens
+          # with repository permission: Administration (read-only).
+          repo_token: ${{ secrets.SCORECARD_TOKEN }}
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
