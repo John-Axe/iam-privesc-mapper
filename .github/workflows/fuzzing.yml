@@ -1,0 +1,35 @@
+name: Fuzzing
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 8 * * 1" # weekly, Monday 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fuzzing-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fuzz:
+    name: Atheris fuzz (build_principals)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.11"
+
+      - name: Install atheris and package
+        run: |
+          pip install atheris
+          pip install networkx graphviz
+          pip install --no-deps -e .
+
+      - name: Run fuzz target (60 s smoke run)
+        run: python fuzz/fuzz_build_principals.py -runs=50000 -max_total_time=60
