@@ -1,0 +1,16 @@
+#
+# Hash-pinned dependencies for the fuzzing workflow.
+# Satisfies OpenSSF Scorecard Pinned-Dependencies check.
+#
+# To regenerate:
+#   pip-compile --extra=dev --generate-hashes pyproject.toml  (for networkx/graphviz)
+#   pip download atheris==X.Y.Z --no-deps -d /tmp && sha256sum /tmp/atheris*.whl
+#
+atheris==3.1.0 \
+    --hash=sha256:ec5e11f21a4c197fe91f7aea2b2de88e623c73a21fc07b105ac6329a1588457b
+graphviz==0.21 \
+    --hash=sha256:20743e7183be82aaaa8ad6c93f8893c923bd6658a04c32ee115edb3c8a835f78 \
+    --hash=sha256:54f33de9f4f911d7e84e4191749cac8cc5653f815b06738c54db9a15ab8b1e42
+networkx==3.6.1 \
+    --hash=sha256:26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509 \
+    --hash=sha256:d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762
